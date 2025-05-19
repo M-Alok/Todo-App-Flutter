@@ -1,7 +1,7 @@
 class Todo {
   String? id;
   String? todoText;
-  bool? isDone;
+  bool isDone;
 
   Todo({
     required this.id,
