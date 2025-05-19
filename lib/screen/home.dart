@@ -91,6 +91,7 @@ class _HomeState extends State<Home> {
                       controller: _todoController,
                       decoration: InputDecoration(
                         hintText: 'Add new todo item',
+                        hintStyle: TextStyle(fontSize: 18),
                         border: InputBorder.none,
                       ),
                     ),
@@ -135,7 +136,9 @@ class _HomeState extends State<Home> {
 
   void _addTodoItem(String todo) {
     setState(() {
-      todos.add(Todo(id: DateTime.now().millisecondsSinceEpoch.toString(), todoText: todo));
+      if (_todoController.text.isNotEmpty) {
+        todos.add(Todo(id: DateTime.now().millisecondsSinceEpoch.toString(), todoText: todo));
+      }
     });
     _todoController.clear();
   }
@@ -155,10 +158,10 @@ class _HomeState extends State<Home> {
 
   Widget searchBox() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20)
+        borderRadius: BorderRadius.circular(10)
       ),
       child: TextField(
         onChanged: (value) => _searchTodoItems(value),
@@ -168,7 +171,7 @@ class _HomeState extends State<Home> {
           prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
           border: InputBorder.none,
           hintText: 'Search',
-          hintStyle: TextStyle(color: tdGrey),
+          hintStyle: TextStyle(color: tdGrey, fontSize: 18),
         ),
       ),
     );
